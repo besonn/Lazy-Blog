@@ -1,0 +1,17 @@
+@import "../include/common";
+@import "../include/nav";
+@import "../include/footer";
+
+// 宸︿晶瀵艰埅閮ㄥ垎
+.sidebar {
+  .nav-link {
+    font-weight: bolder;
+    color: #35b558;
+  }
+}
+main{
+  label {
+    font-weight: bolder;
+  }
+}
+

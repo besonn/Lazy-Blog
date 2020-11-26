@@ -1,0 +1,45 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/css/admin/publish.css')
+
+append js
+  script(src='/ueditor/ueditor.config.js')
+  script(src='/ueditor/ueditor.all.js')
+  script(src='/js/admin/publish.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      include ../include/admin-nav.pug
+      main(role='main', class=['col-xl-10', 'col-md-9', 'col-md-auto'])
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#') Lazy Blog
+            li.breadcrumb-item
+              a(href='#') 个人中心
+            li(class=['breadcrumb-item', 'active'], aria-current='page') 发表博客
+        form#infoForm(onsubmit='addBlog()')
+          .form-group
+            label(for='title') 博客标题
+            input.form-control(type='text', id='title', name='title', placeholder='请输入博客标题', required, oninvalid='setCustomValidity("博客标题不能为空")', oninput='setCustomValidity("")', value= article?article.title:'')
+          .form-group
+            label(for='category') 博客所属分类
+            select.form-control#category(name='category', required, oninvalid='setCustomValidity("博客所属分类不能为空")', oninput='setCustomValidity("")')
+              each category in categories
+                option(value= category._id, selected= article&&article.category==category._id.toString()?true:false)= category.name
+          .form-group
+            label(for='summary') 博客摘要
+            textarea.form-control(name='summary', id='summary', cols='30', rows='3', placeholder='请输入博客摘要', required, oninvalid='setCustomValidity("博客摘要不能为空")', oninput='setCustomValidity("")')= article?article.summary:''
+          .form-group
+            label(for='summary') 博客正文
+            script#editor(type="text/plain")!= article?article.content:''
+          .form-group
+            if article
+              input(type='hidden', id='blogId', name='blogId', value=`${article._id}`)
+            if page
+              input(type='hidden', id='page', name='page', value=`${page}`)
+            button#ensure(class=['btn', 'btn-primary', 'mt-3'], type='submit') 确 定
+  include ../include/footer.pug

@@ -1,0 +1,17 @@
+nav.navbar {
+    margin-bottom: 1.25rem; // rem em px
+  
+    .navbar-brand {
+      color: #9d9d9d !important;
+      font-size: 1.125rem;
+  
+      &:hover {
+        color: #fff !important;
+      }
+    }
+  
+    a:hover {
+      color: #fff !important;
+    }
+  }
+  

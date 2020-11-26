@@ -1,0 +1,52 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/css/admin/category.css')
+
+append js
+  script(src='/validation/jquery.validate.min.js')
+  script(src='/js/admin/category.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      include ../include/admin-nav.pug
+      main(role='main', class=['col-xl-10', 'col-md-9', 'col-md-auto'])
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#') Lazy Blog
+            li.breadcrumb-item
+              a(href='#') 个人中心
+            li(class=['breadcrumb-item', 'active'], aria-current='page') 博客分类管理
+        .row
+          .col-md-auto.mr-auto
+            button#btn-add(class=['btn', 'btn-primary'], type='button') 添加博客分类
+          .col-md-auto
+            form#add-category
+              .input-group
+                input#categoryId(type='hidden', class='form-control', name='categoryId')
+                input#category(class='form-control', name='category', type='text', placeholder='填写要增加的分类名称', aria-label="填写要增加的分类名称", aria-describedby="confirm", data-container='body', data-toggle='popover', data-placement='left', data-content='博客分类不能为空')
+                .input-group-append
+                  button#confirm(class=['btn', 'btn-primary'], type='submit') 确 定
+        .row
+          .col-12
+            .table-responsive
+              table(class=['table', 'table-hover', 'mt-5'])
+                thead
+                  tr
+                    th(scope="col") 序号
+                    th(scope="col") 博客分类名称
+                    th(scope="col") 博文数量
+                    th(scope="col") 操作
+                tbody
+                  each category, index in categories
+                    tr
+                      th(scope='row')= index+1
+                      td= category.name
+                      td= category.articleCount
+                      td
+                        a(href='javascript:void(0);', class='mr-2', onclick=`changeCategory(this, "${category._id}")`) 修改
+                        a(href='javascript:void(0);', onclick=`delCategory("${category._id}")`) 删除
+  include ../include/footer.pug

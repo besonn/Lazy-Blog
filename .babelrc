@@ -1,0 +1,6 @@
+{
+    "presets": ["@babel/preset-env"],
+    "compact": false,
+    "plugins": ["@babel/plugin-transform-runtime"]
+  }
+  

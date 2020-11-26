@@ -1,0 +1,92 @@
+@import "../include/_nav";
+@import "../include/_footer";
+@import "../include/_common";
+
+
+// 主体内容部分
+.content {
+    a {
+      font-weight: bold;
+      color: peru;
+      background-color: transparent;
+      font-size: 1.125rem;
+      overflow: hidden;
+  
+      &:visited {
+        text-decoration: none;
+      }
+  
+      &:link {
+        text-decoration: none;
+      }
+  
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  
+    p {
+      font-size: 0.875rem;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+  
+    i {
+      font-size: 0.8125rem;
+      margin-right: 0.75rem;
+    }
+  
+    span, time {
+      font-size: 0.8125rem;
+      color: #8a8a8a;
+      line-height: 1.5rem;
+    }
+  }
+  
+  ul.list-unstyle {
+    li.media {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+  
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+  
+      &:first-of-type {
+        padding-top: 0;
+      }
+  
+      &:last-of-type {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+  }
+  
+  aside {
+    .notice-card {
+      .notice-header {
+        border-left: 3px solid #cf2730;
+      }
+    }
+  
+    .dev-card {
+      .card-body {
+        padding: 0;
+      }
+  
+      img {
+        width: 1.875rem;
+        height: 1.875rem;
+      }
+    }
+  
+    .friend-card {
+      .card-body {
+        padding: 0;
+      }
+    }
+  }
+  

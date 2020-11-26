@@ -1,0 +1,34 @@
+body {
+    background-image: url('/img/reg_bg.jpg');
+  }
+  
+  
+  .reg-bg {
+    i {
+      top: 2rem;
+      right: 2rem;
+      font-size: 3.25rem;
+      color: #cccccc;
+    }
+  
+    form {
+      background-color: #eeeeee;
+    }
+  
+    .card {
+      .card-body:last-of-type {
+        @extend form;
+      }
+    }
+  
+    #captcha {
+      &:hover {
+        cursor: pointer;
+      }
+  
+      svg {
+        height: 75%;
+      }
+    }
+  }
+  

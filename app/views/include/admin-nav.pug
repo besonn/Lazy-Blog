@@ -1,0 +1,27 @@
+nav(class=['col-xl-2', 'col-md-3', 'd-none', 'd-md-block', 'sidebar'])
+  .sidebar-sticky
+    ul(class=['nav', 'flex-column'])
+      li.nav-item
+        a.nav-link(href='/admin/userinfo')
+          i(class=['fas', 'fa-file-alt', 'mr-2'])
+          span 修改个人资料
+      li(class=['nav-item', 'mt-2'])
+        a.nav-link(href='/admin/password')
+          i(class=['fas', 'fa-key', 'mr-2'])
+          span 修改登录密码
+      li(class=['nav-item', 'mt-2'])
+        a.nav-link(href='/admin/portrait')
+          i(class=['fas', 'fa-user', 'mr-2'])
+          span 更改头像图片
+      li(class=['nav-item', 'mt-2'])
+        a.nav-link(href='/admin/category')
+          i(class=['fas', 'fa-money-check', 'mr-2'])
+          span 博客分类管理
+      li(class=['nav-item', 'mt-2'])
+        a.nav-link(href='/admin/bloglist')
+          i(class=['fas', 'fa-list-ul', 'mr-2'])
+          span 博客列表管理
+      li(class=['nav-item', 'mt-2'])
+        a.nav-link(href='/admin/publish')
+          i(class=['fas', 'fa-plus-square', 'mr-2'])
+          span 发表博客

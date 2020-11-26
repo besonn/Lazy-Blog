@@ -1,0 +1,34 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/css/admin/userinfo.css')
+
+append js
+  script(src='/js/admin/userinfo.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      include ../include/admin-nav.pug
+      main(role='main', class=['col-xl-10', 'col-md-9', 'col-md-auto'])
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#') Lazy Blog
+            li.breadcrumb-item
+              a(href='#') 个人中心
+            li(class=['breadcrumb-item', 'active'], aria-current='page') 个人资料
+        form#infoForm(action='/admin/modifyInfo',method='post')
+          .form-group
+            label(for='nickname') 昵 称
+            input.form-control(type='text', id='nickname', name='nickname', placeholder='请输入昵称',value=user.nickname)
+          .form-group
+            label(for='email') 邮 箱
+            input.form-control(type='email', id='email', name='email', placeholder='请输入邮箱',value=user.email)
+          .form-group
+            label(for='intro') 个人简介
+            textarea.form-control(name='intro', id='intro', cols='30', rows='3', placeholder='展示你的专长、技能，有助于别人对你博客的信任度')=user.intro
+          .form-group
+            button#ensure(class=['btn', 'btn-primary', 'mt-3'], type='submit') 确 定
+  include ../include/footer.pug

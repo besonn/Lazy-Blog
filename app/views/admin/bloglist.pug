@@ -1,0 +1,58 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/css/admin/bloglist.css')
+
+append js
+  script(src='/js/admin/bloglist.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      include ../include/admin-nav.pug
+      main(role='main', class=['col-xl-10', 'col-md-9', 'col-md-auto'])
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#') Lazy Blog
+            li.breadcrumb-item
+              a(href='#') 个人中心
+            li(class=['breadcrumb-item', 'active'], aria-current='page') 博客列表管理
+        .card
+          .card-body
+            div(class=['list-group', 'list-group-flush'])
+              each article in articles
+                div(class=['list-group-item', 'list-group-item-action'])
+                  a.card-link(href=`/blog/detail/${article._id}`, target='_blank')
+                    h5= article.title
+                  div(class=['d-flex', 'align-items-center'])
+                    time= moment(article.publishTime).format('YYYY年MM月DD日')
+                    div(class=['ml-5', 'd-flex', 'align-items-center']) 阅读
+                      span(class=['badge', 'badge-pill', 'badge-primary', 'ml-2'])= article.reading
+                    a(href=`/admin/publish/${article._id}/${page}`, class=['badge', 'badge-primary', 'ml-5', 'mr-2']) 编辑
+                    a(href='javascript:void(0);', class=['badge', 'badge-danger'], onclick=`delBlog("${article._id}", "${page}")`) 删除
+                  p.my-2= article.summary
+        nav(aria-label=['page', 'navigation'])
+          ul(class=['pagination', 'justify-content-center', 'mt-4'])
+            if page == 1
+              li(class=['page-item', 'disabled'])
+                a.page-link(href='#') 上一页
+            else
+              li(class=['page-item'])
+                a.page-link(href=`/admin/bloglist/${page-1}`) 上一页
+            - var i = 1
+            while (i <= totalPage)
+              if (i == page)
+                li(class=['page-item', 'active'])
+                  a(class=['page-link'], href='#')= i++
+              else
+                li.page-item
+                  a.page-link(href=`/admin/bloglist/${i}`)= i++
+            if page == totalPage
+              li(class=['page-item', 'disabled'])
+                a.page-link(href='#') 下一页
+            else
+              li(class=['page-item'])
+                a.page-link(href=`/admin/bloglist/${page+1}`) 下一页
+  include ../include/footer.pug

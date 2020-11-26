@@ -1,0 +1,85 @@
+extends ../layout
+
+append css
+  link(rel='stylesheet', href='/css/blog/detail.css')
+
+append js
+  script(src='/js/admin/comment.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      div(class=['col-lg-3'])
+        div(class=['card', 'border-0'])
+          .card-body
+            .list-group
+              section(class=['d-block', 'text-center'])
+                img(class=['rounded', 'rounded-circle', 'header-pic'], src= author.portrait,height="200px",width="200px")
+                p.mt-2= author.nickname
+              table(class=['table', 'mt-3'])
+                tbody
+                  tr
+                    td 共码了
+                    td= author.wordCount
+                      | 千字
+                  tr
+                    td 博客数量
+                    td= author.articleCount
+                      | 篇
+                  tr
+                    td 访问量
+                    td= author.visitedCount
+        div(class=['card', 'relative-blog'])
+          div(class=['card-header', 'bg-dark', 'text-light']) 相关博客
+          .card-body
+            ul(class=['list-group', 'list-group-flush'])
+              each article in articles
+                li.list-group-item
+                  a(class='card-link', href=`/blog/detail/${article._id}`)= article.title
+      div(class=['col-lg-9'])
+        main.d-block
+          nav(aria-label='breadcrumb')
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='#') Lazy Blog
+              li.breadcrumb-item
+                a(href='#') 主页
+              li(class=['breadcrumb-item', 'active'], aria-current='page') 博文
+          main.d-block
+            header(class=['d-block', 'text-center'])
+              h1.text-center= article.title
+              span 作者：
+                a(href='#')= article.author.nickname
+              time.ml-3(datetime= moment(article.publishTime).format('YYYY年MM月DD日'), pubdate= moment(article.publishTime).format('YYYY年MM月DD日'))= moment(article.publishTime).format('YYYY年MM月DD日')
+              span.ml-3 阅读 (
+                = article.reading
+                | )
+            section(class=['d-block', 'mt-5'])
+              h5 摘要
+              p= article.summary
+            section.d-block
+              p!= article.content
+            section(class=['d-block', 'mt-5', 'copyright'])
+              span &copy; 著作权归作者所有
+            section(class=['d-block', 'mt-3'])
+              .card
+                .card-header 评论
+                .card-body
+                  form(class=['mb-3', 'pb-2', 'text-right'], onsubmit='addComment();')
+                    input#articleId(type='hidden', class='form-control', value= article._id)
+                    textarea#commentText(class='form-control', rows=3, placeholder='请登录后再评论', disabled= user?false:true)
+                    button(class=['btn', 'btn-primary', 'mt-2'], type='submit', disabled= user?false:true) 确 定
+                  if comments.length
+                    each comment in comments
+                      ul.list-unstyled
+                        li(class=['media', 'mt-4'])
+                          img(class=['rounded', 'rounded-circle', 'mr-3', 'mt-1'], src='/img/header.jpg')
+                          .media-body
+                            p.comment-user= comment.poster.nickname
+                            p.comment-content= comment.text
+                            time(datetime= moment(article.publishTime).format('YYYY年MM月DD日'), pubdate= moment(article.publishTime).format('YYYY年MM月DD日'))= moment(article.publishTime).format('YYYY年MM月DD日')
+                        hr
+                  else
+                    p 该博客暂时没有评论
+  include ../include/footer.pug

@@ -1,0 +1,36 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/css/admin/login.css')
+
+append js
+  script(src='/validation/jquery.validate.min.js')
+  script(src='/js/admin/login.js')
+
+block content
+  .reg-bg
+    .container
+      div(class=['row', 'justify-content-center', 'mt-5'])
+        .col-md-6
+          .card
+            div(class=['card-body', 'position-relative'])
+              h4 登录Lazy Blog
+              p 请在下面输入框中输入您的用户名与密码
+              i(class=['fas', 'fa-lock', 'position-absolute'])
+            form#loginForm
+              div(class=['form-group', 'mx-4', 'my-4'])
+                input#username(name='username', class='form-control', type='text', placeholder='用户名', data-container='body', data-toggle='popover', data-placement='right', data-content='用户名不符合要求')
+              div(class=['form-group', 'mx-4', 'my-4'])
+                input#password(name='password', class='form-control', type='password', placeholder='密码', data-container='body', data-toggle='popover', data-placement='right', data-content='密码不符合要求')
+              div(class=['form-group', 'row', 'mx-4', 'my-4', 'no-gutters'])
+                .col-sm-9
+                  input#code(name='code', class='form-control', type='text', placeholder='验证码')
+                .col-sm-3(id='captcha', data-container='body', data-toggle='popover', data-placement='right', data-content='验证不符合要求')
+              div(class=['form-group', 'mx-4', 'my-4'])
+                button#reg(type='submit', class=['btn', 'btn-success', 'btn-lg', 'btn-block']) 登录
+            .card-body
+              a(href='#', class=['card-link', 'ml-2']) 注册
+              a(href='#', class=['card-link', 'ml-2']) 找回密码
+
+
+

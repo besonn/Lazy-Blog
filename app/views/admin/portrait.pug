@@ -1,0 +1,93 @@
+extends ../layout.pug
+
+append css
+  link(rel='stylesheet', href='/cropper/cropper.min.css')
+  link(rel='stylesheet', href='/css/admin/portrait.css')
+
+append js
+  script(src='/validation/jquery.validate.min.js')
+  script(src='/cropper/cropper.min.js')
+  script(src='/jquery-cropper/jquery-cropper.min.js')
+  script(src='/js/admin/portrait.js')
+
+block content
+  include ../include/nav.pug
+  .container
+    .row
+      include ../include/admin-nav.pug
+      main(role='main', class=['col-xl-10', 'col-md-9', 'col-md-auto'])
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#') Lazy Blog
+            li.breadcrumb-item
+              a(href='#') 个人中心
+            li(class=['breadcrumb-item', 'active'], aria-current='page') 修改头像
+        .row
+          .col-md-6
+            div(class=['text-center', 'portrait-container'])
+              img#portrait(src=user.portrait, class='mt-4')
+              button(class=['btn', 'btn-primary', 'btn-lg', 'btn-block', 'mt-5'], type='button',  data-toggle="modal", data-target="#editportrait") 更 换 头 像
+              div(class=['modal', 'fade'], id='editportrait',  tabindex="-1", role="dialog", aria-labelledby="modalTitle" aria-hidden="true", data-backdrop='static')
+                div(class=['modal-dialog', 'modal-dialog-centered', 'modal-lg'], role='document')
+                  .modal-content
+                    .modal-header
+                      h4#modalTitle(class='modal-title') 编辑头像
+                      button.close(type="button", data-dismiss="modal", aria-label="Close")
+                        span(aria-hidden="true") &times;
+                    .modal-body.text-left
+                      label(class=['btn', 'btn-primary', 'btn-upload'], for='inputImage')
+                        input.sr-only(type='file', id='inputImage', name='file', accept='.jpg,.jpeg,.png')
+                        | 请选择本地图片
+                      div(class=['row', 'mt-3'])
+                        .col-md-9
+                          .img-container
+                            img#image(src=user.portrait, class='cropper-hide')
+                        .col-md-3
+                          div(class=['img-preview', 'preview-lg'])
+                          div(class=['img-preview', 'preview-md', 'my-4'])
+                          div(class=['img-preview', 'preview-sm'])
+                      div(class=['row', 'my-2'])
+                        .col-md-9.docs-buttons
+                          .btn-group
+                            button(class=['btn', 'btn-primary'], data-method='zoom', data-option='0.1')
+                              i(class=['fas', 'fa-search-plus'])
+                            button(class=['btn', 'btn-primary'], data-method='zoom', data-option='-0.1')
+                              i(class=['fas', 'fa-search-minus'])
+                          div(class=['btn-group', 'ml-2'])
+                            button(class=['btn', 'btn-primary'], data-method='move', data-option='10', data-second-option='0')
+                              i(class=['fas', 'fa-arrow-left'])
+                            button(class=['btn', 'btn-primary'], data-method='move', data-option='-10', data-second-option='0')
+                              i(class=['fas', 'fa-arrow-right'])
+                            button(class=['btn', 'btn-primary'], data-method='move', data-option='0', data-second-option='-10')
+                              i(class=['fas', 'fa-arrow-up'])
+                            button(class=['btn', 'btn-primary'], data-method='move', data-option='-0', data-second-option='10')
+                              i(class=['fas', 'fa-arrow-down'])
+                          div(class=['btn-group', 'ml-2'])
+                            button(class=['btn', 'btn-primary'], data-method='rotate', data-option='-15')
+                              i(class=['fas', 'fa-undo'])
+                            button(class=['btn', 'btn-primary'], data-method='rotate', data-option='15')
+                              i(class=['fas', 'fa-redo'])
+                          div(class=['btn-group', 'ml-2'])
+                            button(class=['btn', 'btn-primary'], data-method='scaleX', data-option='-1')
+                              i(class=['fas', 'fa-arrows-alt-h'])
+                            button(class=['btn', 'btn-primary'], data-method='scaleY', data-option='-1')
+                              i(class=['fas', 'fa-arrows-alt-v'])
+                          div(class=['btn-group', 'ml-2'])
+                            button(class=['btn', 'btn-primary'], data-method='disable')
+                              i(class=['fas', 'fa-lock'])
+                            button(class=['btn', 'btn-primary'], data-method='enable')
+                              i(class=['fas', 'fa-lock-open'])
+                          div(class=['btn-group', 'ml-2'])
+                            button(class=['btn', 'btn-primary'], data-method='reset')
+                              i(class=['fas', 'fa-sync'])
+                        .col-md-3
+                          button#modify(type='submit', class=['btn', 'btn-primary', 'btn-block']) 提交修改
+          .col-md-6
+            h4.mt-5 注意事项
+            hr
+            ol
+              li 请上传不超过1024K的图片
+              li 上传的图片请选择JPG、PNG格式
+              li 建议您上传自己的真实头像
+  include ../include/footer.pug

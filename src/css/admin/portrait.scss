@@ -1,0 +1,63 @@
+@import "../include/common";
+@import "../include/nav";
+@import "../include/footer";
+@import "../include/admin-nav";
+
+
+main {
+  .portrait-container {
+    height: 25rem;
+    overflow: hidden;
+  }
+
+  #portrait {
+    max-width: 100%;
+    height: 60%;
+  }
+
+  .img-container {
+    height: 22.75rem;
+    width: 100%;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.25);
+    background-color: #fcfcfc;
+    overflow: hidden;
+  }
+
+  .img-preview {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow: hidden;
+  }
+
+  .preview-lg {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .preview-md {
+    width: 6.25rem;
+    height: 6.25rem;
+  }
+
+  .preview-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  #image {
+    max-width: 100%; /* This rule is very important, please do not ignore this! */
+  }
+
+
+
+
+
+  h4 {
+    font-weight: bolder;
+  }
+
+  hr {
+    border: 2px dotted;
+  }
+}

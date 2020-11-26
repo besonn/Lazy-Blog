@@ -1,0 +1,60 @@
+@import "../include/common";
+@import "../include/nav";
+@import "../include/footer";
+
+
+// 详情页面
+.header-pic {
+  width: 5.25rem;
+  height: 5.25rem;
+}
+
+.relative-blog {
+  .card-body {
+    padding: 0;
+  }
+}
+
+main {
+  h1, h5 {
+    font-weight: bold;
+  }
+
+  .copyright {
+    color: #999;
+    font-size: 0.875rem;
+  }
+
+  .card {
+    .comment-user {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: #ff0000;
+      margin-bottom: 0;
+    }
+
+    .comment-content {
+      margin-top: 0.3rem;
+      margin-bottom: 0;
+    }
+
+    time {
+      color: #8a8a8a;
+      font-size: 0.875rem;
+    }
+
+    img {
+      width: 3.875rem;
+      height: 3.875rem;
+    }
+
+    form {
+      border-bottom: 2px solid #5bc0de;
+    }
+  }
+}
+
+
+// html 是网页的内容
+// css 是内容的修饰
+// javascript sasdas
